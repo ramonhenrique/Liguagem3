@@ -9,6 +9,7 @@ import listalinguagem3.exercicio07.Exercicio7;
 import listalinguagem3.exercicio08.Exercicio8;
 import listalinguagem3.exercicio09.Exercicio9;
 import listalinguagem3.exercicio11.Exercicio11;
+import listalinguagem3.exercicio12.Exercicio12;
 
 public class ListaLinguagem3 {
 
@@ -37,8 +38,10 @@ public class ListaLinguagem3 {
 //        Exercicio9 pesquisa= new Exercicio9();
 //        pesquisa.Pesquisa();
         
-        Exercicio11 audiencia=new Exercicio11();
-        audiencia.lerDados();
+//        Exercicio11 audiencia=new Exercicio11();
+//        audiencia.lerDados();
+        
+        Exercicio12 curso = new Exercicio12();
         
     }
     
