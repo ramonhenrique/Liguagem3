@@ -13,7 +13,7 @@ import listalinguagem3.exercicio12.Exercicio12;
 
 public class ListaLinguagem3 {
 
-    public static void main(String[] args) {        
+    public static void main(String[] args) {  
 //        Exercicio2 quantPessoas= new Exercicio2(3);
 //        quantPessoas.lerIdades();
         
@@ -42,6 +42,7 @@ public class ListaLinguagem3 {
 //        audiencia.lerDados();
         
         Exercicio12 curso = new Exercicio12();
+        curso.leitura();
         
     }
     
