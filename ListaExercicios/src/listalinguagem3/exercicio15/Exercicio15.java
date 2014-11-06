@@ -21,25 +21,207 @@ import java.util.Scanner;
 import listalinguagem3.exercicio15.Cliente;
 
 public class Exercicio15 extends Cliente {
+
     Scanner s = new Scanner(System.in);
-    Cliente dados = new Cliente();
-    private static int taxa=5;
+    Cliente informConta[] = new Cliente[5];
+    private static int taxa = 5;
     private double valor;
-    private String situacao = "Sem saldos";
-    
-    public void setTaxa() {
-        double minimo = dados.getSaldoCdia()/2;
-        dados.setSaldoMinConta(minimo);
-        if (dados.getSaldoFdia() < dados.getSaldoMinConta()){
-            double atual = dados.getSaldoAtual() - this.taxa;
-            dados.setSaldoAtual(atual);
+
+    public void setTaxa(int conta) {
+        for (int i = 0; i < informConta.length; i++) {
+            if (informConta[i].getNumConta() == conta) {
+                double minimo = informConta[i].getSaldoCdia() / 2;
+                informConta[i].setSaldoMinConta(minimo);
+                if (informConta[i].getSaldoFdia() < informConta[i].getSaldoMinConta()) {
+                    double atual = informConta[i].getSaldoAtual() - this.taxa;
+                    informConta[i].setSaldoAtual(atual);
+                }
+            }
         }
     }
-    
-    public void leitura(){
-        int conta=1;
-        while (conta>0){
-            
+
+    public void saque() {
+        int conta, transacao;
+        double saldo;
+        double valor;
+        boolean existe = false;
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|----------------------SAQUE--------------------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("Conta:");
+        conta = s.nextInt();
+        for (int i = 0; i < informConta.length; i++) {
+            if (informConta[i].getNumConta() == conta) {
+                existe = true;
+                if (informConta[i].getSaldoAtual() > 0) {
+                    saldo = informConta[i].getSaldoAtual();
+                    System.out.println("valor do saque:");
+                    valor = s.nextDouble();
+                    if (saldo < valor) {
+                        System.out.println("Saldo insuficiente!");
+                    } else {
+                        saldo = informConta[i].getSaldoAtual() - valor;
+                        informConta[i].setSaldoAtual(saldo);
+                        transacao = informConta[i].getSaque() + 1;
+                        informConta[i].setSaque(transacao);
+                    }
+                } else if (informConta[i].getSaldoAtual() < 0) {
+                    System.out.println("Sem saldo");
+                }
+                setTaxa(conta);
+                break;
+            }
+        }
+        if (!existe) {
+            System.out.println("Conta não encontrada");
+        }
+    }
+
+    public void deposito() {
+        int conta, transacao;
+        double saldo;
+        double valor;
+        boolean existe = false;
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|--------------------DEPOSTIO-------------------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("Conta:");
+        conta = s.nextInt();
+        for (int i = 0; i < informConta.length; i++) {
+            if (informConta[i].getNumConta() == conta) {
+                existe = true;
+                System.out.println("valor do depósito:");
+                valor = s.nextDouble();
+                saldo = informConta[i].getSaldoAtual() + valor;
+                informConta[i].setSaldoAtual(saldo);
+                transacao = informConta[i].getDeposito() + 1;
+                informConta[i].setDeposito(transacao);
+                break;
+            }
+            setTaxa(conta);
+        }
+        if (!existe) {
+            System.out.println("Conta não encontrada");
+        }
+    }
+
+    public void extrato() {
+        int conta;
+        double saldo;
+        boolean existe = false;
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|--------------------EXTRATO--------------------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("Conta:");
+        conta = s.nextInt();
+        for (int i = 0; i < informConta.length; i++) {
+            if (informConta[i].getNumConta() == conta) {
+                existe = true;
+                System.out.println("Saldo:" + informConta[i].getSaldoAtual());
+                break;
+            }
+            setTaxa(conta);
+        }
+        if (!existe) {
+            System.out.println("Conta não encontrada");
+        }
+    }
+
+    public void setSaldoMinimo(int conta) {
+        for (int i = 0; i < informConta.length; i++) {
+            if (informConta[i].getNumConta() == conta) {
+                double minimo = informConta[i].getSaldoCdia() / 2;
+                informConta[i].setSaldoMinConta(minimo);
+            }
+        }
+    }
+
+    public void cadastraConta() {
+        int numConta = 1;
+        double saldoAtual;
+        for (int i = 0; i < informConta.length; i++) {
+            while (numConta > 0) {
+                System.out.println("|-----------------------------------------------|");
+                System.out.println("|-------------------CADASTRO--------------------|");
+                System.out.println("|-----------------------------------------------|");
+                System.out.println("Número da conta:");
+                numConta = s.nextInt();
+                if (numConta > 0) {
+                    informConta[i].setNumConta(numConta);
+                    System.out.println("Saldo:");
+                    saldoAtual = s.nextDouble();
+                    informConta[i].setSaldoAtual(saldoAtual);
+                    informConta[i].setSaldoCdia(saldoAtual);
+                    setSaldoMinimo(numConta);
+                } else {
+                    break;
+                }
+            }
+            if (numConta == 0) {
+                break;
+            }
+        }
+    }
+
+    public void resumoDiario() {
+        for (int i = 0; i < informConta.length; i++) {
+            System.out.println("|-----------------------------------------------|");
+            System.out.println("|--------------------RESUMO---------------------|");
+            System.out.println("|-----------------------------------------------|");
+            System.out.println("Conta:" + informConta[i].getNumConta());
+            if (informConta[i].getSaldoAtual() <= 0) {
+                System.out.println("NÃO HÁ FUNDOS");
+            } else {
+                System.out.println("Saldo:" + informConta[i].getSaldoAtual());
+                System.out.println("Quantidade de saques:" + informConta[i].getSaque());
+                System.out.println("Quantidade de depositos:" + informConta[i].getDeposito());
+            }
+        }
+    }
+
+    public void tela() {
+        String flag = null;
+        int num;
+        while (!flag.equalsIgnoreCase("sair")) {
+            System.out.println("|------------------------|");
+            System.out.println("|-------DALLAS-BANK------|");
+            System.out.println("|------------------------|");
+            System.out.println("|---------CLIENTE--------|");
+            System.out.println("|SAQUE                (1)|");
+            System.out.println("|DEPOSITO             (2)|");
+            System.out.println("|EXTRATO              (3)|");
+            System.out.println("|-------FUNCIONÁRIO------|");
+            System.out.println("|Cadastrar nova conta (4)|");
+            System.out.println("|Resumo Diário        (5)|");
+            System.out.println("|Exit                 (6)|");
+            System.out.println("|------------------------|");
+            num = s.nextInt();
+            switch (num) {
+                case 1: {
+                    saque();
+                    break;
+                }
+                case 2: {
+                    deposito();
+                    break;
+                }
+                case 3: {
+                    extrato();
+                    break;
+                }
+                case 4: {
+                    cadastraConta();
+                    break;
+                }
+                case 5: {
+                    resumoDiario();
+                    break;
+                }
+                case 6: {
+                    flag = "sair";
+                    break;
+                }
+            }
         }
     }
 

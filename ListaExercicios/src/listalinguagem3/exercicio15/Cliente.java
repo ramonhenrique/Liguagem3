@@ -6,11 +6,23 @@ public class Cliente {
     private double saldoMinConta;
     private double saldoCdia;
     private double saldoFdia;
-    private String[] transacao = new String[2];
-    
-    public Cliente() {
-        transacao[0]="debito";
-        transacao[1]="credito";
+    private int deposito;
+    private int saque;
+
+    public int getDeposito() {
+        return deposito;
+    }
+
+    public void setDeposito(int deposito) {
+        this.deposito = deposito;
+    }
+
+    public int getSaque() {
+        return saque;
+    }
+
+    public void setSaque(int saque) {
+        this.saque = saque;
     }
 
     public int getNumConta() {
@@ -52,10 +64,4 @@ public class Cliente {
     public void setSaldoFdia(double saldoFdia) {
         this.saldoFdia = saldoFdia;
     }
-    
-    
-    
-    
-    
-    
 }
