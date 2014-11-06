@@ -42,11 +42,11 @@ public class ListaLinguagem3 {
 //        Exercicio11 audiencia=new Exercicio11();
 //        audiencia.lerDados();
         
-//        Exercicio12 curso = new Exercicio12();
-//        curso.leitura();
+        Exercicio12 curso = new Exercicio12();
+        curso.leitura();
         
-        Exercicio13 sistemaAvaliacao = new Exercicio13(10);
-        sistemaAvaliacao.leitura();
+//        Exercicio13 sistemaAvaliacao = new Exercicio13(10);
+//        sistemaAvaliacao.leitura();
     }
     
 }
