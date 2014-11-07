@@ -13,6 +13,8 @@ import listalinguagem3.exercicio12.Exercicio12;
 import listalinguagem3.exercicio13.Exercicio13;
 import listalinguagem3.exercicio14.Exercicio14;
 import listalinguagem3.exercicio15.Exercicio15;
+import listalinguagem3.exercicio16.Exercicio16;
+import listalinguagem3.exercicio17.Exercicio17;
 
 public class ListaLinguagem3 {
 
@@ -51,10 +53,15 @@ public class ListaLinguagem3 {
 //        sistemaAvaliacao.leitura();
         
 //        Exercicio14 energia = new Exercicio14();
-//        energia.Leitura();
+//        energia.dados();
 //    
 //        Exercicio15 banco = new Exercicio15();
 //        banco.tela();
+        
+//        Exercicio16 levantamento = new Exercicio16();
+//        levantamento.pegaDados();
+        
+//        Exercicio17 salario = new Exercicio17();
     }
     
 }

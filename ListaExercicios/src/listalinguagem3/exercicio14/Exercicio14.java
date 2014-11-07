@@ -29,7 +29,7 @@ public class Exercicio14 {
             totCom = 0.0, totInd = 0.0;
     int numCons, tipoCons, contCons = 0;
 
-    public void Leitura() {
+    public void dados() {
         Scanner s = new Scanner(System.in);
         System.out.println("Preço do kwh consumido: ");
         preco = s.nextDouble();
@@ -68,10 +68,10 @@ public class Exercicio14 {
             System.out.println("Número do consumidor ou 0 para sair: ");
             numCons = s.nextInt();
         }
-        Calcular();
+        calcula();
     }
 
-    public void Calcular() {
+    public void calcula() {
         System.out.println("\nMaior consumo: " + maiorCons + " Kwh");
         System.out.println("\n\tMENORES CONSUMOS");
         System.out.println("Residencial: " + menorRes + " Kwh\tComercial: " + menorCom
