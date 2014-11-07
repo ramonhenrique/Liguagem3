@@ -1,5 +1,6 @@
 package listalinguagem3;
 
+import listalinguagem3.exercicio01.Exercicio1;
 import listalinguagem3.exercicio02.Exercicio2;
 import listalinguagem3.exercicio03.Exercicio3;
 import listalinguagem3.exercicio04.Exercicio4;
@@ -19,6 +20,9 @@ import listalinguagem3.exercicio17.Exercicio17;
 public class ListaLinguagem3 {
 
     public static void main(String[] args) { 
+//        Exercicio1 convert = new Exercicio1(50);
+//        convert.converter();
+        
 //        Exercicio2 quantPessoas= new Exercicio2(3);
 //        quantPessoas.lerIdades();
         
