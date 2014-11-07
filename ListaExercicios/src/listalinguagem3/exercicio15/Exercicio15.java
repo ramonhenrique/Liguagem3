@@ -132,6 +132,7 @@ public class Exercicio15 extends Cliente {
             if (informConta[i].getNumConta() == conta) {
                 double minimo = informConta[i].getSaldoCdia() / 2;
                 informConta[i].setSaldoMinConta(minimo);
+                break;
             }
         }
     }
@@ -139,48 +140,45 @@ public class Exercicio15 extends Cliente {
     public void cadastraConta() {
         int numConta = 1;
         double saldoAtual;
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|-------------------CADASTRO--------------------|");
+        System.out.println("|-----------------------------------------------|");
         for (int i = 0; i < informConta.length; i++) {
-            while (numConta > 0) {
-                System.out.println("|-----------------------------------------------|");
-                System.out.println("|-------------------CADASTRO--------------------|");
-                System.out.println("|-----------------------------------------------|");
-                System.out.println("Número da conta:");
-                numConta = s.nextInt();
-                if (numConta > 0) {
-                    informConta[i].setNumConta(numConta);
-                    System.out.println("Saldo:");
-                    saldoAtual = s.nextDouble();
-                    informConta[i].setSaldoAtual(saldoAtual);
-                    informConta[i].setSaldoCdia(saldoAtual);
-                    setSaldoMinimo(numConta);
-                } else {
-                    break;
-                }
-            }
-            if (numConta == 0) {
+            informConta[i] = new Cliente();
+            System.out.println("Número da conta:");
+            numConta = s.nextInt();
+            if (numConta > 0) {
+                informConta[i].setNumConta(numConta);
+                System.out.println("Saldo:");
+                saldoAtual = s.nextDouble();
+                informConta[i].setSaldoAtual(saldoAtual);
+                informConta[i].setSaldoCdia(saldoAtual);
+                setSaldoMinimo(numConta);
+            } else {
                 break;
             }
         }
     }
 
     public void resumoDiario() {
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|--------------------RESUMO---------------------|");
+        System.out.println("|-----------------------------------------------|");
         for (int i = 0; i < informConta.length; i++) {
-            System.out.println("|-----------------------------------------------|");
-            System.out.println("|--------------------RESUMO---------------------|");
-            System.out.println("|-----------------------------------------------|");
             System.out.println("Conta:" + informConta[i].getNumConta());
             if (informConta[i].getSaldoAtual() <= 0) {
                 System.out.println("NÃO HÁ FUNDOS");
-            } else {
+            } else if (informConta[i].getNumConta() != 0) {
                 System.out.println("Saldo:" + informConta[i].getSaldoAtual());
                 System.out.println("Quantidade de saques:" + informConta[i].getSaque());
                 System.out.println("Quantidade de depositos:" + informConta[i].getDeposito());
+                System.out.println("|-----------------------------------------------|");
             }
         }
     }
 
     public void tela() {
-        String flag = null;
+        String flag = "";
         int num;
         while (!flag.equalsIgnoreCase("sair")) {
             System.out.println("|------------------------|");
