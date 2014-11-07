@@ -5,7 +5,6 @@ public class Cliente {
     private double saldoAtual;
     private double saldoMinConta;
     private double saldoCdia;
-    private double saldoFdia;
     private int deposito;
     private int saque;
 
@@ -55,13 +54,5 @@ public class Cliente {
 
     public void setSaldoCdia(double saldoCdia) {
         this.saldoCdia = saldoCdia;
-    }
-
-    public double getSaldoFdia() {
-        return saldoFdia;
-    }
-
-    public void setSaldoFdia(double saldoFdia) {
-        this.saldoFdia = saldoFdia;
     }
 }

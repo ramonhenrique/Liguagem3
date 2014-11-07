@@ -27,17 +27,18 @@ public class Exercicio15 extends Cliente {
     private static int taxa = 5;
     private double valor;
 
-    public void setTaxa(int conta) {
+    public boolean setTaxa(int conta) {
         for (int i = 0; i < informConta.length; i++) {
             if (informConta[i].getNumConta() == conta) {
-                double minimo = informConta[i].getSaldoCdia() / 2;
-                informConta[i].setSaldoMinConta(minimo);
-                if (informConta[i].getSaldoFdia() < informConta[i].getSaldoMinConta()) {
+                if (informConta[i].getSaldoAtual() < informConta[i].getSaldoMinConta()) {
                     double atual = informConta[i].getSaldoAtual() - this.taxa;
                     informConta[i].setSaldoAtual(atual);
+                    return true;
                 }
+                break;
             }
         }
+        return false;
     }
 
     public void saque() {
@@ -68,7 +69,6 @@ public class Exercicio15 extends Cliente {
                 } else if (informConta[i].getSaldoAtual() < 0) {
                     System.out.println("Sem saldo");
                 }
-                setTaxa(conta);
                 break;
             }
         }
@@ -98,7 +98,6 @@ public class Exercicio15 extends Cliente {
                 informConta[i].setDeposito(transacao);
                 break;
             }
-            setTaxa(conta);
         }
         if (!existe) {
             System.out.println("Conta não encontrada");
@@ -120,7 +119,6 @@ public class Exercicio15 extends Cliente {
                 System.out.println("Saldo:" + informConta[i].getSaldoAtual());
                 break;
             }
-            setTaxa(conta);
         }
         if (!existe) {
             System.out.println("Conta não encontrada");
@@ -165,14 +163,23 @@ public class Exercicio15 extends Cliente {
         System.out.println("|--------------------RESUMO---------------------|");
         System.out.println("|-----------------------------------------------|");
         for (int i = 0; i < informConta.length; i++) {
-            System.out.println("Conta:" + informConta[i].getNumConta());
-            if (informConta[i].getSaldoAtual() <= 0) {
-                System.out.println("NÃO HÁ FUNDOS");
-            } else if (informConta[i].getNumConta() != 0) {
-                System.out.println("Saldo:" + informConta[i].getSaldoAtual());
-                System.out.println("Quantidade de saques:" + informConta[i].getSaque());
-                System.out.println("Quantidade de depositos:" + informConta[i].getDeposito());
-                System.out.println("|-----------------------------------------------|");
+            if (informConta[i].getNumConta() != 0) {
+                if(setTaxa(informConta[i].getNumConta())){
+                    System.out.println("Conta:" + informConta[i].getNumConta());
+                    System.out.println("Encargos:-"+taxa);
+                }
+                if (informConta[i].getSaldoAtual() < informConta[i].getSaldoMinConta()) {
+                    System.out.println("NÃO HÁ FUNDOS");
+                    System.out.println("|-----------------------------------------------|");
+                } else {
+                    System.out.println("Conta:" + informConta[i].getNumConta());
+                    System.out.println("Saldo:" + informConta[i].getSaldoAtual());
+                    System.out.println("Quantidade de saques:" + informConta[i].getSaque());
+                    System.out.println("Quantidade de depositos:" + informConta[i].getDeposito());
+                    System.out.println("|-----------------------------------------------|");
+                }
+            } else {
+                break;
             }
         }
     }
